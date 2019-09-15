@@ -1,6 +1,6 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {fromEvent, Subject, Subscription, timer} from "rxjs";
-import {pairwise, map, scan, startWith, bufferTime, filter, tap, buffer, debounce, debounceTime} from "rxjs/operators";
+import { Component, OnInit } from '@angular/core';
+import { fromEvent, Subject, Subscription, timer } from "rxjs";
+import { pairwise, map, scan, startWith, filter, tap, buffer, debounceTime } from "rxjs/operators";
 
 
 @Component({
@@ -26,6 +26,7 @@ export class AppComponent implements OnInit {
     });
 
     //To display time difference if it is needed.
+
     // const clicks = fromEvent(document, 'click');
     //   const pairs = clicks.pipe(pairwise());
     //
@@ -44,7 +45,6 @@ export class AppComponent implements OnInit {
   }
 
   waitTimer() {
-    // console.log(this.myButton);
     this.subj.next(null)
   }
 
@@ -54,6 +54,7 @@ export class AppComponent implements OnInit {
     totalSeconds %= 3600;
     const minutes = Math.floor(totalSeconds / 60);
     const seconds = totalSeconds % 60;
+
     const result = (type === 'seconds') ?
       seconds < 10 ? `0${seconds}` : seconds.toString() :
       (type === 'minutes') ?
@@ -72,7 +73,6 @@ export class AppComponent implements OnInit {
     );
     this.myTimerSub = ti.subscribe(t => {
       this.currentNumber = t;
-
     });
   }
 

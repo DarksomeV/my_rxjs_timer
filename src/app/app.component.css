@@ -1,4 +1,4 @@
-.wrap{
+.wrap {
   height: 100vh;
   width: 100%;
   display: flex;
@@ -7,19 +7,32 @@
   justify-content: center;
 }
 
-.timer{
+.timer {
   font-size: 36px;
 }
 
-.btn-row{
+.btn-row {
   margin: 20px 0;
 }
 
-.btn-row button + button{
+.btn-row button + button {
   margin-left: 10px;
 }
-.settings{
+
+.settings {
   position: fixed;
   top: 10vh;
   left: 10vh;
+}
+
+.explanations {
+  margin-top: 2em;
+  max-width: 50%;
+  font-size: 12px;
+  text-align: center;
+}
+
+.explanations p {
+  padding-bottom: 0.4em;
+  border-bottom: 1px solid rgba(0, 0, 0, .3);
 }

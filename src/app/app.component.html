@@ -16,10 +16,14 @@
   </div>
   <div class="wait">
     <button mat-fab color="warn" (click)="waitTimer()" [disabled]="buttonStatus">Wait</button>
-<!--    <button mat-fab color="warn" id="myButton" #myButton [disabled]="buttonStatus">Wait</button>-->
   </div>
 
-
+  <div class="explanations">
+    <p><span>"Reset"</span> при запущенном таймере скидывает время и продолжает отсчет.</p>
+    <p><span>"Reset"</span> при остановленном таймере сбрасывает таймер.</p>
+    <p>Слева сверху есть числовой input для симуляции увеличения скорости времени. Сделал это для демонстрации что
+      формат HH:MM:SS не нарушен. </p>
+  </div>
 
 
   <div *ngIf="buttonStatus" class="settings">
