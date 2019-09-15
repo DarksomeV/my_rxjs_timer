@@ -1,0 +1,25 @@
+.wrap{
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.timer{
+  font-size: 36px;
+}
+
+.btn-row{
+  margin: 20px 0;
+}
+
+.btn-row button + button{
+  margin-left: 10px;
+}
+.settings{
+  position: fixed;
+  top: 10vh;
+  left: 10vh;
+}

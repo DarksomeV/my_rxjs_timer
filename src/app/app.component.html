@@ -1,24 +1,33 @@
-<h1>CurrentNumber: {{ currentNumber }}</h1>
+<div class="wrap">
+  <div class="timer">
+    <span class="hours">{{displayTime(currentNumber, 'hours')}}</span>
+    <span>:</span>
+    <span class="minutes">{{displayTime(currentNumber, 'minutes')}}</span>
+    <span>:</span>
+    <span class="seconds">{{displayTime(currentNumber, 'seconds')}}</span>
+  </div>
 
-<div class="timer">
-  <span class="hours">{{displayTime(currentNumber, 'hours')}}</span>
-  <span>:</span>
-  <span class="minutes">{{displayTime(currentNumber, 'minutes')}}</span>
-  <span>:</span>
-  <span class="seconds">{{displayTime(currentNumber, 'seconds')}}</span>
+
+  <div class="btn-row">
+    <button (click)="startTimer()" mat-raised-button color="primary"
+            [disabled]="!buttonStatus">{{ currentNumber === 0 ? 'Start' : 'Resume' }}</button>
+    <button (click)="pauseTimer()" mat-raised-button [disabled]="buttonStatus">Stop</button>
+    <button (click)="resetTimer()" mat-raised-button color="accent">Reset</button>
+  </div>
+  <div class="wait">
+    <button mat-fab color="warn" (click)="waitTimer()" [disabled]="buttonStatus">Wait</button>
+<!--    <button mat-fab color="warn" id="myButton" #myButton [disabled]="buttonStatus">Wait</button>-->
+  </div>
+
+
+
+
+  <div *ngIf="buttonStatus" class="settings">
+    <p><span>Speed:</span>
+      <input type="number" [(ngModel)]="coefficient" min="1"/>
+    </p>
+  </div>
+
 </div>
 
-<button (click)="startTimer()" [disabled]="!buttonStatus">{{ currentNumber === 0 ? 'Start' : 'Resume' }}</button>
-<button (click)="pauseTimer()" [disabled]="buttonStatus">Stop</button>
-
-<br>
-<button (click)="resetTimer()">Reset</button>
-<button class="wait" (click)="waitTimer()" [disabled]="buttonStatus">Wait</button>
-
-
-<div *ngIf="buttonStatus">
-  <input type="number" [(ngModel)]="coefficient" min="1" />
-</div>
-
-<p><b>{{coefficient}}</b></p>
 <!--<button class="wait" >Wait</button>-->

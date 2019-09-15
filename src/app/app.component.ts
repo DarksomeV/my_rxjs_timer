@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Subject, Subscription, timer } from "rxjs";
-import { pairwise, map, scan, startWith, bufferTime, filter } from "rxjs/operators";
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {fromEvent, Subject, Subscription, timer} from "rxjs";
+import {pairwise, map, scan, startWith, bufferTime, filter, tap, buffer, debounce, debounceTime} from "rxjs/operators";
 
 
 @Component({
@@ -18,15 +18,33 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.subj.asObservable().pipe(
-        bufferTime(300),
+        buffer(this.subj.asObservable().pipe(debounceTime(300))),
         filter((i: any) => i.length === 2)
     ).subscribe(v => {
       console.log(v);
       this.pauseTimer();
     });
+
+    //To display time difference if it is needed.
+    // const clicks = fromEvent(document, 'click');
+    //   const pairs = clicks.pipe(pairwise());
+    //
+    //   const difference = pairs.pipe(
+    //     map(pair => {
+    //       const first = pair[0].timeStamp;
+    //       const second = pair[1].timeStamp;
+    //       console.log(second - first);
+    //       return second-first;
+    //     }),
+    //   );
+    //
+    //   difference.subscribe(x => {
+    //     console.log(x);
+    //   });
   }
 
   waitTimer() {
+    // console.log(this.myButton);
     this.subj.next(null)
   }
 
@@ -73,28 +91,6 @@ export class AppComponent implements OnInit {
       this.myTimerSub.unsubscribe();
     }
   }
-  //It was the first method to make this task.
-  // ngOnInit() {
-  //   const clicks = fromEvent(document.querySelector('.wait'), 'click');
-  //   const pairs = clicks.pipe(pairwise());
-  //
-  //   const difference = pairs.pipe(
-  //     map(pair => {
-  //       const first = pair[0].timeStamp;
-  //       const second = pair[1].timeStamp;
-  //       return second-first;
-  //     }),
-  //   );
-  //
-  //   difference.subscribe(x => {
-  //     this.timedifference = x;
-  //   });
-  //   if (this.timedifference < 300) {
-  //     return false;
-  //   } else {
-  //     return false;
-  //   }
-  // }
 
 
 }
